@@ -1,0 +1,40 @@
+{
+  "doc": "Sample Stream Payload.",
+  "fields": [
+    {
+      "doc": "The int type is a 32-bit signed integer.",
+      "name": "CLIN_ID",
+      "type": [
+        "null",
+        "int"
+      ]
+    },
+    {
+      "doc": "The double type is a double precision (64-bit) IEEE 754 floating-point number.",
+      "name": "SO",
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    {
+      "doc": "The string is a unicode character sequence.",
+      "name": "STATUS",
+      "type": [
+        "null",
+        {
+          "name": "STATUS",
+          "symbols": [
+            "CREATED",
+            "UPDATED",
+            "CANCELLED"
+          ],
+          "type": "enum"
+        }
+      ]
+    }
+  ],
+  "name": "Payload",
+  "namespace": "poc.ids.streams",
+  "type": "record"
+}

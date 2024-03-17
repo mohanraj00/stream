@@ -1,0 +1,38 @@
+{
+    "doc": "Sample schema to help you get started.",
+    "fields": [
+        {
+            "doc": "event_id",
+            "name": "EVENT_ID",
+            "type": [
+                "null",
+                {
+                    "type": "string",
+                    "logicalType": "uuid"
+                }
+            ]
+        },
+        {
+            "doc": "event timestamp",
+            "name": "TIMESTAMP",
+            "type": [
+                "null",
+                {
+                    "type": "long",
+                    "logicalType": "timestamp-millis"
+                }
+            ]
+        },
+        {
+            "doc": "Event Payload",
+            "name": "EVENT",
+            "type": [
+                "null",
+                "Payload"
+            ]
+        }
+    ],
+    "name": "Source",
+    "namespace": "poc.ids.streams",
+    "type": "record"
+}

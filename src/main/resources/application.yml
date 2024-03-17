@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: stream-poc
+  cloud:
+    function:
+      definition: process
+    stream: 
+      bindings:
+        process-in-0:
+          destination: ${TOPIC}
+          group: ${GROUP:standalone}
+          consumer:
+            use-native-decoding: true
+        trigger-out-0:
+          destination: ${TOPIC}
+          producer:
+            use-native-encoding: true
+      kafka:
+        binder:
+          brokers: ${CONFLUENT_KAFKA_URL}
+          autoCreateTopics: true
+          configuration:
+            '[sasl.mechanism]': PLAIN
+            '[security.protocol]': SASL_SSL
+            '[partition.assignment.strategy]': org.apache.kafka.clients.consumer.CooperativeStickyAssignor,org.apache.kafka.clients.consumer.RangeAssignor
+          jaas:
+            loginModule: org.apache.kafka.common.security.scram.ScramLoginModule
+            controlFlag: required
+            options:
+              username: ${CONFLUENT_API_USER}
+              password: ${CONFLUENT_API_PASS}
+          consumerProperties:
+            '[max.poll.interval.ms]': ${KAFKA_MAX_POLL_INTERVAL:5000}
+            '[basic.auth.credentials.source]': USER_INFO
+            '[basic.auth.user.info]': ${CONFLUENT_SCHEMA_USER_INFO}
+            '[schema.registry.url]': ${CONFLUENT_SCHEMA_URL}
+            '[key.deserializer]': org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+            '[spring.deserializer.key.delegate.class]': org.apache.kafka.common.serialization.StringDeserializer
+            '[value.deserializer]': org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+            '[spring.deserializer.value.delegate.class]': io.confluent.kafka.serializers.KafkaAvroDeserializer
+            '[specific.avro.reader]': true
+          producerProperties:
+            '[basic.auth.credentials.source]': USER_INFO
+            '[basic.auth.user.info]': ${CONFLUENT_SCHEMA_USER_INFO}
+            '[schema.registry.url]': ${CONFLUENT_SCHEMA_URL}
+            '[key.serializer]': org.apache.kafka.common.serialization.StringSerializer
+            '[value.serializer]': io.confluent.kafka.serializers.KafkaAvroSerializer
