@@ -81,9 +81,8 @@ public class StreamApplication {
 				.getAsInt();
 		String so = "SO" + random.ints(200, 300).findFirst()
 				.getAsInt();
-		int rstatus = random.ints(0, 2).findFirst()
-				.getAsInt();
-		STATUS st = (rstatus == 2) ? STATUS.CREATED : (rstatus == 1) ? STATUS.UPDATED : STATUS.UPDATED;
+		STATUS[] statuses = STATUS.values();
+	STATUS st = statuses[random.nextInt(statuses.length)];
 
 		Payload p = new Payload(clin_id, so, st);
 		Source s = new Source(UUID.randomUUID(), Instant.now(), p);
