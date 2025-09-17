@@ -1,8 +1,8 @@
 {
-  "doc": "Sample Stream Payload.",
+  "doc": "Represents the payload of a stream message, containing detailed information about a specific event.",
   "fields": [
     {
-      "doc": "The int type is a 32-bit signed integer.",
+      "doc": "The Clinical Line Item Number (CLIN) ID. This is a 32-bit signed integer that uniquely identifies the clinical line item.",
       "name": "CLIN_ID",
       "type": [
         "null",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "doc": "The double type is a double precision (64-bit) IEEE 754 floating-point number.",
+      "doc": "The Sales Order (SO) number. This is a string that represents the sales order associated with the event.",
       "name": "SO",
       "type": [
         "null",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "doc": "The string is a unicode character sequence.",
+      "doc": "The status of the event. This is an enumeration that can be one of the following values: CREATED, UPDATED, or CANCELLED.",
       "name": "STATUS",
       "type": [
         "null",
