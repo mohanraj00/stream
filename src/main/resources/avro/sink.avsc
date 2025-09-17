@@ -1,8 +1,8 @@
 {
-    "doc": "Sample schema to help you get started.",
+    "doc": "Represents the sink record for an event, wrapping the event payload with metadata.",
     "fields": [
         {
-            "doc": "event_id",
+            "doc": "The unique identifier for the event, represented as a UUID.",
             "name": "EVENT_ID",
             "type": [
                 "null",
@@ -13,7 +13,7 @@
             ]
         },
         {
-            "doc": "event timestamp",
+            "doc": "The timestamp of when the event occurred, in milliseconds since the Unix epoch.",
             "name": "TIMESTAMP",
             "type": [
                 "null",
@@ -24,7 +24,7 @@
             ]
         },
         {
-            "doc": "Event Payload",
+            "doc": "The actual event payload, containing the detailed information of the event.",
             "name": "EVENT",
             "type": [
                 "null",
